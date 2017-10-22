@@ -50,7 +50,6 @@ def _init_m(i, j):
 def distance_matrix(s, t):
 	dim_i = len(s) + 1
 	dim_j = len(t) + 1
-	#abuse list comprehensions to create matrices
 	X = [[_init_x(i, j) for j in range(0, dim_j)] for i in range(0, dim_i)]
 	Y = [[_init_y(i, j) for j in range(0, dim_j)] for i in range(0, dim_i)]
 	M = [[_init_m(i, j) for j in range(0, dim_j)] for i in range(0, dim_i)]
