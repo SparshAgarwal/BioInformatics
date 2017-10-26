@@ -1,8 +1,0 @@
-ATG
-CGC
-CGT
-GAT
-GCG
-GTG
-TGA
-TGC
