@@ -13,7 +13,7 @@ esac
 MAX_TIME=1
 
 # take students either from args or from file
-if [ $# > 0 ]; then
+if [ $# > 0 ]; then 
     STUDENT_IDS=$@
 else
     STUDENT_IDS=$(cat students)

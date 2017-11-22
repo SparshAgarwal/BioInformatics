@@ -138,6 +138,34 @@ def main():
 			optpath = list(path)
 
 	for state in optpath[1:-1]:
+	for state in statespossible:
+		if state == 0:
+			probmatrix[0][state] = 1
+		else:
+			probmatrix[0][state] = 0
+	maxstate.append(0)
+	# print maxstate
+	for pos in range (1, len(arg[4])+1):
+		# print ("pos") + str(pos)
+		maxcurrprob = 0
+		maxcurrstate = 0
+		for state in statespossible[1:-1]:
+			print probmatrix[pos-1][maxstate[pos-1]]
+			print transitionprob.get(maxstate[pos-1],state)
+			# print state
+			# print pos
+			# print arg[4][pos-1]
+			print stateprob.get((state,arg[4][pos-1]))
+			probmatrix[pos][state] = probmatrix[pos-1][maxstate[pos-1]]*transitionprob.get(maxstate[pos-1],state)*stateprob.get((state,arg[4][pos-1]))
+			if maxcurrprob<probmatrix[pos][state]:
+				maxcurrprob = probmatrix[pos][state]
+				maxcurrstate = state
+			print ("maxcurrstate")+str(maxcurrstate)
+		maxstate.append(maxcurrstate)
+		print maxstate
+
+
+	for state in maxstate[1:]:
 		print state,
 
 main()
