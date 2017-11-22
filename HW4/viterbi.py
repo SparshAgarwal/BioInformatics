@@ -170,6 +170,11 @@ def getInput():
 # 	for state in maxstate[1:]:
 # 		print state,
 
+def printoutput(pos, state):
+	if ptr[pos][state] == 0:
+		return
+	printoutput(pos-1,ptr[pos][state])
+	print ptr[pos][state],
 
 def main():
 	getInput()
@@ -184,7 +189,7 @@ def main():
 		for state in statespossible[1:]:
 			maxvprob = 0.0
 			maxvprobstate = 0
-			for prevstate in statespossible[1:]:
+			for prevstate in statespossible:
 				tp = 0.0 if transitionprob.get((prevstate,state))==None else transitionprob.get((prevstate,state)) 
 				vprob = v[pos-1][prevstate]*tp
 				if maxvprob<vprob:
@@ -193,9 +198,13 @@ def main():
 			if state == statespossible[-1] or pos == len(arg[4])+1:
 				v[pos][state] = maxvprob
 			else:
-				v[pos][state] = stateprob.get((state,arg[pos-1]))*maxvprob
+				# print state
+				# print pos
+				# print arg[4][pos-1]
+				# print stateprob.get((state,arg[4][pos-1]))
+				v[pos][state] = stateprob.get((state,arg[4][pos-1]))*maxvprob
 			ptr[pos][state] = maxvprobstate
-
+	printoutput(len(arg[4])+1, arg[1]+1)
 main()
 
 
