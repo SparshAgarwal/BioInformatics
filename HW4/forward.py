@@ -109,7 +109,7 @@ def main():
 	for pos in range (1, len(arg[4])+1):
 		for state in statespossible[1:-1]:
 			if f[pos][state]==0:
-				print -1000000.00,
+				print "%.2f" % -1000000.00,
 			else:
 				# print pos
 				# print state
