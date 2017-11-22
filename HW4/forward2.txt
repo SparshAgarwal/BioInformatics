@@ -1,0 +1,48 @@
+0
+1
+2
+3
+4
+5
+0.3
+1
+T
+0.4
+2
+T
+0.2
+3
+T
+0.1
+4
+T
+0.4
+1
+A
+0.4
+2
+A
+0.2
+3
+A
+0.1
+4
+A
+0.2
+1
+G
+0.1
+2
+G
+0.3
+3
+G
+0.4
+4
+G
+Traceback (most recent call last):
+  File "forward.py", line 70, in <module>
+    findprob()
+  File "forward.py", line 64, in findprob
+    reqvalue+= probmatrix[arg[1]][state] * transitionprob.get(state,arg[1]+1)
+IndexError: list index out of range

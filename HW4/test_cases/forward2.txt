@@ -1,6 +1,4 @@
-Traceback (most recent call last):
-  File "forward.py", line 69, in <module>
-    getInput()
-  File "forward.py", line 16, in getInput
-    with open(arg[2]) as f:
-IOError: [Errno 2] No such file or directory: '/Users/sparshagarwal/OneDrive/Fall'
+-1.90 -1.61 -1000000.00 -1000000.00 
+-4.42 -2.75 -3.73 -5.52 
+-7.64 -5.27 -5.16 -5.24 
+-4.80

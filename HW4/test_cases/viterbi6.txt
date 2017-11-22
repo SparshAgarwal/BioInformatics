@@ -1,6 +1,1 @@
-Traceback (most recent call last):
-  File "viterbi.py", line 48, in <module>
-    getInput()
-  File "viterbi.py", line 17, in getInput
-    with open(arg[2]) as f:
-IOError: [Errno 2] No such file or directory: '/Users/sparshagarwal/OneDrive/Fall'
+1 3 2 3 2 1 3 2 1 4 3 2 1 3 2 3 2 1 3 2 5
