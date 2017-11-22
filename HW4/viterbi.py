@@ -11,6 +11,8 @@ stateprob = {}
 statespossible = list()
 probmatrix = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+1)]
 probmatrixlog = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+1)]
+v = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+2)]
+ptr = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+2)]
 maxstate = list()
 # #print type(arg[2])
 def getInput():
@@ -46,127 +48,153 @@ def getInput():
 	# #print stateprob
 	# #print stateprob.get((1,'T'))
 
-paths = list(list())
-path = list()
+# paths = list(list())
+# path = list()
 
-def findpaths(root,count):
-	#print('dkhdlk')
-	#print root
-	path.append(root)
-	#print path
-	count = count -1
-	#print ('xlzhvnl;xfgnvl;xbl')
-	#print count
-	if root == arg[1]+1 and count==-1:
-		return True
-	if count<-1:
-		return False
-	if root == arg[1]+1 and count!=-1:
-		return False
-	for node in transitionmap.get(root):
-		#print('yay')
-		#print path
-		#print node
-		if findpaths(node,count)==True:
-			#print('yayua')
-			#print path
-			optpath = list(path)
-			paths.append(optpath)
-		path.pop()
-		#print(',dhflghlnhblckh;cmn;clgmn;gn')
-		#print count
+# def findpaths(root,count):
+# 	#print('dkhdlk')
+# 	#print root
+# 	path.append(root)
+# 	#print path
+# 	count = count -1
+# 	#print ('xlzhvnl;xfgnvl;xbl')
+# 	#print count
+# 	if root == arg[1]+1 and count==-1:
+# 		return True
+# 	if count<-1:
+# 		return False
+# 	if root == arg[1]+1 and count!=-1:
+# 		return False
+# 	for node in transitionmap.get(root):
+# 		#print('yay')
+# 		#print path
+# 		#print node
+# 		if findpaths(node,count)==True:
+# 			#print('yayua')
+# 			#print path
+# 			optpath = list(path)
+# 			paths.append(optpath)
+# 		path.pop()
+# 		#print(',dhflghlnhblckh;cmn;clgmn;gn')
+# 		#print count
+
+
+# # def main():
+# # 	getInput()
+# # 	findpaths(0,len(arg[4])+1)
+# # 	#print paths
+# # 	for state in statespossible:
+# # 		if state == 0:
+# # 			probmatrix[0][state] = 1
+# # 		else:
+# # 			probmatrix[0][state] = 0
+# # 	maxstate.append(0)
+# # 	# #print maxstate
+# # 	for pos in range (1, len(arg[4])+1):
+# # 		# #print ("pos") + str(pos)
+# # 		maxcurrprob = 0
+# # 		maxcurrstate = 0
+# # 		for state in statespossible[1:-1]:
+# # 			tp = 0.0 if transitionprob.get((maxstate[pos-1],state))==None else transitionprob.get((maxstate[pos-1],state)) 
+# # 			#print probmatrix[pos-1][maxstate[pos-1]]
+# # 			#print tp
+# # 			#print stateprob.get((state,arg[4][pos-1]))
+# # 			# #print maxstate[pos-1]
+# # 			#print state
+# # 			#print pos
+# # 			# #print arg[4][pos-1]
+			
+# # 			probmatrix[pos][state] = probmatrix[pos-1][maxstate[pos-1]]*tp*stateprob.get((state,arg[4][pos-1]))
+# # 			#print probmatrix[pos][state]
+# # 			if maxcurrprob<probmatrix[pos][state]:
+# # 				maxcurrprob = probmatrix[pos][state]
+# # 				maxcurrstate = state
+# # 			#print ("maxcurrstate")+str(maxcurrstate)
+# # 		maxstate.append(maxcurrstate)
+# # 		#print maxstate
 
 
 # def main():
 # 	getInput()
 # 	findpaths(0,len(arg[4])+1)
-# 	#print paths
+# 	print paths
+# 	maxprob = 0
+# 	optpath = list()
+# 	for path in paths:
+# 		pos  = 0
+# 		prob = 1
+# 		print path
+# 		for ele in path[1:-1]:
+# 			print ele
+# 			print arg[4][pos]
+# 			print transitionprob.get((path[ele-1],ele))
+# 			print stateprob.get((ele,arg[4][pos]))
+# 			print prob
+# 			# print (transitionprob.get((path[ele-1],ele))*stateprob.get((ele,arg[4][pos])))
+# 			prob = prob*(transitionprob.get((path[ele-1],ele))*stateprob.get((ele,arg[4][pos])))
+# 			print prob
+# 		prob = prob* (transitionprob.get((ele,path[-1])))
+# 		print prob
+# 		if prob>maxprob:
+# 			maxprob = prob
+# 			optpath = list(path)
+
+# 	for state in optpath[1:-1]:
 # 	for state in statespossible:
 # 		if state == 0:
 # 			probmatrix[0][state] = 1
 # 		else:
 # 			probmatrix[0][state] = 0
 # 	maxstate.append(0)
-# 	# #print maxstate
+# 	# print maxstate
 # 	for pos in range (1, len(arg[4])+1):
-# 		# #print ("pos") + str(pos)
+# 		# print ("pos") + str(pos)
 # 		maxcurrprob = 0
 # 		maxcurrstate = 0
 # 		for state in statespossible[1:-1]:
-# 			tp = 0.0 if transitionprob.get((maxstate[pos-1],state))==None else transitionprob.get((maxstate[pos-1],state)) 
-# 			#print probmatrix[pos-1][maxstate[pos-1]]
-# 			#print tp
-# 			#print stateprob.get((state,arg[4][pos-1]))
-# 			# #print maxstate[pos-1]
-# 			#print state
-# 			#print pos
-# 			# #print arg[4][pos-1]
-			
-# 			probmatrix[pos][state] = probmatrix[pos-1][maxstate[pos-1]]*tp*stateprob.get((state,arg[4][pos-1]))
-# 			#print probmatrix[pos][state]
+# 			print probmatrix[pos-1][maxstate[pos-1]]
+# 			print transitionprob.get(maxstate[pos-1],state)
+# 			# print state
+# 			# print pos
+# 			# print arg[4][pos-1]
+# 			print stateprob.get((state,arg[4][pos-1]))
+# 			probmatrix[pos][state] = probmatrix[pos-1][maxstate[pos-1]]*transitionprob.get(maxstate[pos-1],state)*stateprob.get((state,arg[4][pos-1]))
 # 			if maxcurrprob<probmatrix[pos][state]:
 # 				maxcurrprob = probmatrix[pos][state]
 # 				maxcurrstate = state
-# 			#print ("maxcurrstate")+str(maxcurrstate)
+# 			print ("maxcurrstate")+str(maxcurrstate)
 # 		maxstate.append(maxcurrstate)
-# 		#print maxstate
+# 		print maxstate
+
+
+# 	for state in maxstate[1:]:
+# 		print state,
 
 
 def main():
 	getInput()
-	findpaths(0,len(arg[4])+1)
-	print paths
-	maxprob = 0
-	optpath = list()
-	for path in paths:
-		pos  = 0
-		prob = 1
-		print path
-		for ele in path[1:-1]:
-			print ele
-			print arg[4][pos]
-			print transitionprob.get((path[ele-1],ele))
-			print stateprob.get((ele,arg[4][pos]))
-			print prob
-			# print (transitionprob.get((path[ele-1],ele))*stateprob.get((ele,arg[4][pos])))
-			prob = prob*(transitionprob.get((path[ele-1],ele))*stateprob.get((ele,arg[4][pos])))
-			print prob
-		prob = prob* (transitionprob.get((ele,path[-1])))
-		print prob
-		if prob>maxprob:
-			maxprob = prob
-			optpath = list(path)
 
-	for state in optpath[1:-1]:
-	for state in statespossible:
-		if state == 0:
-			probmatrix[0][state] = 1
-		else:
-			probmatrix[0][state] = 0
-	maxstate.append(0)
-	# print maxstate
 	for pos in range (1, len(arg[4])+1):
-		# print ("pos") + str(pos)
-		maxcurrprob = 0
-		maxcurrstate = 0
-		for state in statespossible[1:-1]:
-			print probmatrix[pos-1][maxstate[pos-1]]
-			print transitionprob.get(maxstate[pos-1],state)
-			# print state
-			# print pos
-			# print arg[4][pos-1]
-			print stateprob.get((state,arg[4][pos-1]))
-			probmatrix[pos][state] = probmatrix[pos-1][maxstate[pos-1]]*transitionprob.get(maxstate[pos-1],state)*stateprob.get((state,arg[4][pos-1]))
-			if maxcurrprob<probmatrix[pos][state]:
-				maxcurrprob = probmatrix[pos][state]
-				maxcurrstate = state
-			print ("maxcurrstate")+str(maxcurrstate)
-		maxstate.append(maxcurrstate)
-		print maxstate
+		v[pos][0] = 0
+	for state in statespossible[1:]:
+		v[0][state] = 0
+	v[0][0] = 1
 
-
-	for state in maxstate[1:]:
-		print state,
+	for pos in range (1, len(arg[4])+2):
+		for state in statespossible[1:]:
+			maxvprob = 0.0
+			maxvprobstate = 0
+			for prevstate in statespossible[1:]:
+				tp = 0.0 if transitionprob.get((prevstate,state))==None else transitionprob.get((prevstate,state)) 
+				vprob = v[pos-1][prevstate]*tp
+				if maxvprob<vprob:
+					maxvprob = vprob
+					maxvprobstate = prevstate
+			if state == statespossible[-1] or pos == len(arg[4])+1:
+				v[pos][state] = maxvprob
+			else:
+				v[pos][state] = stateprob.get((state,arg[pos-1]))*maxvprob
+			ptr[pos][state] = maxvprobstate
 
 main()
 
