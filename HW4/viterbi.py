@@ -12,7 +12,7 @@ statespossible = list()
 probmatrix = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+1)]
 probmatrixlog = [[0 for x in range(arg[1]+2)] for y in range(len(arg[4])+1)]
 maxstate = list()
-
+# print type(arg[2])
 def getInput():
 	with open(arg[2]) as f:
 		lines = f.read().splitlines()
