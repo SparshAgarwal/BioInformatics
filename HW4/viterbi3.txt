@@ -3,4 +3,4 @@ Traceback (most recent call last):
     getInput()
   File "viterbi.py", line 17, in getInput
     with open(arg[2]) as f:
-IOError: [Errno 2] No such file or directory: '/Users/sparshagarwal/OneDrive/Fall'
+IOError: [Errno 2] No such file or directory: '/ua/agarwal39/BioInformatics/HW4/test_cases/transition3.txt'
