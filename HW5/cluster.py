@@ -83,7 +83,7 @@ while len(FC)>int(sys.argv[3]):
 	# print FC
 	# updateD()
 	# print D
-print FC
+# print FC
 
 avgc = {}
 for i in range(len(FC)):
@@ -101,7 +101,7 @@ for i in range(len(FC)):
 	avgc[tuple(FC[i])]= sumc/len(FC[i][:-1])
 FC = sorted(avgc, key=avgc.get)
 
-print FC
+# print FC
 
 for c in FC:
 	for g in c[:-1]:
